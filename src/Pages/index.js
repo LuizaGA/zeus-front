@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles.css";
 import api from "../Services/api";
-import Modal from "../Components/modal/index";
+//import Modal from "../Components/modal/index";
 
 export default function Adicionar() {
   const [brand, setBrand] = useState("");
@@ -9,7 +9,12 @@ export default function Adicionar() {
   const [price, setPrice] = useState("");
   const [incidents, setIncidests] = useState([]);
   const formRef = useRef(null);
-  const [modal, setModal] = useState(false);
+  const [visibility, setVisibility] = useState(false);
+
+  const [editBrand, setEditBrand] = useState("");
+  const [editQuantity, setEditQuantity] = useState("");
+  const [editPrice, setEditPrice] = useState("");
+  const [editId, setEditId] = useState("");
 
   async function AdicionarCompras(e) {
     e.preventDefault();
@@ -53,10 +58,31 @@ export default function Adicionar() {
     });
   };
 
-  const handleEdit = async (id) => {
-    await api.put(`update/${id}`).then((res) =>{
+  const atualizar = async (editId) => { 
+    const dados = {
+      brand: editBrand,
+      quantity: editQuantity,
+      price: editPrice,
+    }
+    try {
+      await api.put(`update/${editId}`, dados);
+      closeEdit();
       getItems();
-    }) 
+    } catch (err) {
+      
+    }
+  }
+
+  function handleEdit(id, brand, quantity, price) {
+    setVisibility(true);
+    setEditBrand(brand);
+    setEditQuantity(quantity);
+    setEditPrice(price);
+    setEditId(id);
+  }
+
+  function closeEdit() {
+    setVisibility(false);
   }
 
   return (
@@ -116,18 +142,10 @@ export default function Adicionar() {
                   <td>{incident?.brand}</td>
                   <td>{incident?.quantity}</td>
                   <td>{incident?.price}</td>
-                  <td>{`${date.getDate()}/${
-                    date.getMonth() + 1
-                  }/${date.getFullYear()}`}</td>
+                  <td>{`${date.getDate()}/${date.getMonth() + 1
+                    }/${date.getFullYear()}`}</td>
                   <td>
-                    <button onClick={() => setModal(true)} > Editar</button>
-                    {modal ? (
-                      <Modal 
-                        onClose={() => setModal(false)} 
-                        handleEdit = {handleEdit}
-                        incident = {incident}
-                      />
-                    ): null}
+                    <button onClick={() => handleEdit(incident._id, incident.brand, incident.quantity, incident.price)} > Editar</button>
                   </td>
                   <td>
                     <button onClick={() => handleDelete(incident._id)}>
@@ -140,6 +158,64 @@ export default function Adicionar() {
           </tbody>
         </table>
       </div>
+
+      {/* {visibility ? (
+        <div className="modal">
+          <div className="container">
+            <h1>Editar Compras</h1>
+            <div>
+              <label> Marca da Ração:</label>
+              <input>
+                value={editBrand}
+                onChange={(e) => setEditBrand(e.target.value)}
+              </input>
+              <label>Quantidade (kg): </label>
+              <input>
+                value={editQuantity}
+                onChange={(e) => setEditQuantity(e.target.value)}
+              </input>
+              <label>Preço (R$): </label>
+              <input>
+                value={editPrice}
+                onChange={(e) => setEditPrice(e.target.value)}
+              </input>
+            </div>
+            <button className="botao-modal" onClick={handleEdit}>Atualizar</button>
+            <button className="botao-modal" onClick={closeEdit}>
+              Sair
+            </button>
+          </div>
+        </div>
+      ) : null} */}
+      {visibility ? (
+        <div className="modal">
+          <div className="container">
+            <h1>Editar Compras</h1>
+            <div>
+              <label> Marca da Ração:</label>
+              <input
+                value={editBrand}
+                onChange={(e) => setEditBrand(e.target.value)}>
+              </input>
+              <label>Quantidade (kg): </label>
+              <input
+                type="number"
+                value={editQuantity}
+                onChange={(e) => setEditQuantity(e.target.value)}
+              ></input>
+              <label>Preço (R$): </label>
+              <input
+                type="number"
+                value={editPrice}
+                onChange={(e) => setEditPrice(e.target.value)}
+              ></input>
+              <button className="botao-modal" onClick={() => atualizar(editId)}>Atualizar</button>
+              <button className="botao-modal" onClick={ () => closeEdit}>Sair</button>
+            </div>
+          </div>
+
+        </div>
+      ) : null}
     </>
   );
 }
