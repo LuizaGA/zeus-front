@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  margin-bottom: 20px;
 }
 
 form {
@@ -17,6 +17,7 @@ form {
 
 h1 {
   color: darkgreen;
+  display: block;
 }
 
 label {
@@ -39,10 +40,31 @@ button {
   margin-top: 20px;
   background-color: darkgreen;
   color: white;
-  text-decoration: bold;
   width: 250px;
-  height: 50px;
+  height: 55px;
   border: 1px solid black;
+  border-radius: 5px; 
+  cursor: pointer;
+}
+
+h3 {
+  text-decoration: bold;
+  font-size: 18px;
+
+}
+
+.containerVisualizar {
+  border: 3px solid darkgreen;
   border-radius: 5px;
-  font-size: 15px;
+  padding : 10px;
+  width: 30%;
+  height: 30vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table {
+  display:block;
 }
