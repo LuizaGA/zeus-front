@@ -1,4 +1,4 @@
-import React; from 'react'
+import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import Adicionar from './Pages/Adicionar';
