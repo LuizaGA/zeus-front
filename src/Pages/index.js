@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./styles.css";
 import api from "../Services/api"
 
@@ -6,20 +6,37 @@ export default function Adicionar() {
   const [brand, setBrand] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
+  // const [incidents, setIncidests] = useState('');
+  // essa linha de cima é um teste
 
-  function AdicionarCompras(e){
+  async function AdicionarCompras(e){
     e.preventDefault();
 
-    console.log({
+    const dados = {
       brand,
       quantity,
       price
-    })
-
+    };
+    
+    try {
+      const resposta = await api.post('register', dados);
+      alert(`Sua compra foi adicionada com sucesso`);
+    } catch (err) {
+      alert('Erro, tente novamente.');
+    }
   }
+  
+  // useEffect(() => {
+  //     api.get('find', await (resposta =>{
+  //       setIncidests(resposta.data)
+  //     }) )
+  // }, [])
+  // esse useEffect é um teste
+ 
+  
   return (
     <>
-      <div className="container">
+      <div>
         <form onSubmit={AdicionarCompras}>
           <h1>Adicionar Compras</h1>
           <div>
@@ -39,7 +56,7 @@ export default function Adicionar() {
           </button>
         </form>
       </div>
-      <div className = "containerVisualizar">
+      <div >
         <h1>Visualizar Compras</h1>
         <table>
           <thead>
@@ -58,10 +75,14 @@ export default function Adicionar() {
               <td>21/11</td>
             </tr>
             <tr>
-              <td>MarcaY</td>
-              <td>20</td>
-              <td>200</td>
-              <td>21/11</td>
+              {/* {incidents.map(incident => (
+                <tr>
+                  <td>{incident.brand}</td>
+                  <td>{incident.quantity}</td>
+                  <td>{incident.price}</td>
+                  <td>21/11</td>
+                </tr>
+              ))} */}
             </tr>
           </tbody>
         </table>        
