@@ -21,7 +21,7 @@ input {
   border-radius: 5px;
 }
 
-button {
+.botao1 {
   display: inline;
   margin: 1px;
   margin-top: 20px;
@@ -30,16 +30,15 @@ button {
   width: 250px;
   height: 55px;
   border: 1px solid black;
-  border-radius: 5px; 
+  border-radius: 5px;
   cursor: pointer;
 }
 
 h3 {
   text-decoration: bold;
   font-size: 18px;
-
 }
 
 table {
-  display:block;
+  display: block;
 }
