@@ -53,6 +53,12 @@ export default function Adicionar() {
     });
   };
 
+  const handleEdit = async (id) => {
+    await api.put(`update/${id}`).then((res) =>{
+      getItems();
+    }) 
+  }
+
   return (
     <>
       <div>
@@ -114,12 +120,14 @@ export default function Adicionar() {
                     date.getMonth() + 1
                   }/${date.getFullYear()}`}</td>
                   <td>
-                    <button onClick={() => setModal(true)}> Editar</button>
+                    <button onClick={() => setModal(true)} > Editar</button>
                     {modal ? (
-                      <Modal onClose={() => setModal(false)}>
-                        <h2>k k </h2>
-                      </Modal>
-                    ) : null}
+                      <Modal 
+                        onClose={() => setModal(false)} 
+                        handleEdit = {handleEdit}
+                        incident = {incident}
+                      />
+                    ): null}
                   </td>
                   <td>
                     <button onClick={() => handleDelete(incident._id)}>
