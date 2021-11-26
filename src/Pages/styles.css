@@ -14,7 +14,7 @@ label {
 
 input {
   display: inline-block;
-  width: 100%;
+  width: 500px;
   height: 25px;
   margin: 5px;
   border: 1px solid black;
@@ -58,13 +58,11 @@ table {
 .container {
   background-color: white;
   color: green;
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   border-radius: 15px;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
-
-   
