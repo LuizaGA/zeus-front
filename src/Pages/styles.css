@@ -38,9 +38,17 @@ h3 {
   text-decoration: bold;
   font-size: 18px;
 }
+table th {
+  color: darkgreen;
+  font-size: 18px;
+  padding: 10px;
+}
 
-table {
-  display: block;
+table button {
+  display: inline-block;
+  margin: 3px;
+  background-color: darkgreen;
+  color: white;
 }
 
 .modal {
@@ -65,4 +73,17 @@ table {
   justify-content: center;
   display: flex;
   flex-direction: column;
+}
+
+.botao2 {
+  display: inline;
+  margin: 5px;
+  background-color: darkgreen;
+  color: white;
+  width: 150px;
+  height: 40px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
 }

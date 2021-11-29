@@ -55,10 +55,17 @@ export default function Adicionar() {
   }, []);
 
   const handleDelete = async (id) => {
-    await api.delete(`delete/${id}`).then((res) => {
-      alert("Compra deletada.");
-      getItems();
-    });
+    let confirmacao = prompt(
+      "Deseja realmente deletar a comprar? Se sim, digite sim."
+    ).toLowerCase();
+    if (confirmacao === "sim") {
+      await api.delete(`delete/${id}`).then((res) => {
+        alert("Compra deletada.");
+        getItems();
+      });
+    } else {
+      alert("Operação cancelada, compra não deletada.");
+    }
   };
 
   const atualizar = async (editId) => {
@@ -71,6 +78,7 @@ export default function Adicionar() {
       await api.put(`update/${editId}`, dados);
       setVisibility(false);
       getItems();
+      alert("Compra atualizada com sucesso.");
     } catch (err) {
       alert("Erro, tente novamente.");
     }
@@ -127,13 +135,13 @@ export default function Adicionar() {
             ></input>
           </div>
           <button type="submit" className="botao1">
-            <h3>Adiconar Compra</h3>
+            <h3>Adicionar Compra</h3>
           </button>
         </form>
       </div>
       <div>
         <h1>Visualizar Compras</h1>
-        <table>
+        <table border="1">
           <thead>
             <tr>
               <th>Marca</th>
@@ -203,11 +211,11 @@ export default function Adicionar() {
               onChange={(e) => setYear(e.target.value)}
             ></input>
           </div>
-          <button onClick={() => calcularTotal(month, year)}>
+          <button className="botao2" onClick={() => calcularTotal(month, year)}>
             Calcular Total
           </button>
           <div>
-            <label>Preço (R$): {totalPrice} </label>
+            <label>Preço Total (R$): {totalPrice} </label>
           </div>
         </div>
       </div>
