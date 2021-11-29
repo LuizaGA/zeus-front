@@ -105,125 +105,140 @@ export default function Adicionar() {
 
   return (
     <>
-      <div>
-        <form onSubmit={AdicionarCompras} ref={formRef}>
-          <h1>Adicionar Compras</h1>
+      <header>
+        <h2>Desafio Incrível - </h2>
+        <h1> Zeus</h1>
+      </header>
+      <div className="tela">
+        <div className="area1">
           <div>
-            <label> Marca da Ração:</label>
-            <input
-              placeholder="Marca X"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-            ></input>
+            <form onSubmit={AdicionarCompras} ref={formRef}>
+              <h3>Adicionar Compras</h3>
+              <div>
+                <label> Marca da Ração:</label>
+                <input
+                  placeholder="Marca X"
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                ></input>
+              </div>
+              <div>
+                <label>Quantidade (kg): </label>
+                <input
+                  type="number"
+                  placeholder="20"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                ></input>
+              </div>
+              <div>
+                <label>Preço (R$): </label>
+                <input
+                  type="number"
+                  placeholder="100"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                ></input>
+              </div>
+              <button type="submit" className="botao1">
+                <h4>Adicionar Compra</h4>
+              </button>
+            </form>
           </div>
+
           <div>
-            <label>Quantidade (kg): </label>
-            <input
-              type="number"
-              placeholder="20"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-            ></input>
+            <h3>Total de Compras</h3>
+            <div>
+              <label>
+                Escolha o mês e o ano e veja quanto gastou nesse mês
+              </label>
+              <div>
+                <label>Mês</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="12"
+                  value={month}
+                  onChange={(e) => setMonth(e.target.value)}
+                ></input>
+                <br></br>
+                <label>Ano</label>
+                <input
+                  type="number"
+                  min="2021"
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                ></input>
+              </div>
+              <button
+                className="botao2"
+                onClick={() => calcularTotal(month, year)}
+              >
+                Calcular Total
+              </button>
+              <div>
+                <label>Preço Total (R$): {totalPrice} </label>
+              </div>
+            </div>
           </div>
-          <div>
-            <label>Preço (R$): </label>
-            <input
-              type="number"
-              placeholder="100"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            ></input>
-          </div>
-          <button type="submit" className="botao1">
-            <h3>Adicionar Compra</h3>
-          </button>
-        </form>
-      </div>
-      <div>
-        <h1>Visualizar Compras</h1>
-        <table border="1">
-          <thead>
-            <tr>
-              <th>Marca</th>
-              <th>Quantidade (kg)</th>
-              <th>Preço R$</th>
-              <th>Data</th>
-              <th>Editar</th>
-              <th>Deletar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {incidents.map((incident) => {
-              const date = new Date(incident.createdAt);
-              return (
-                <tr key={incident._id}>
-                  <td>{incident?.brand}</td>
-                  <td>{incident?.quantity}</td>
-                  <td>{incident?.price}</td>
-                  <td>{`${date.getDate()}/${
-                    date.getMonth() + 1
-                  }/${date.getFullYear()}`}</td>
-                  <td>
-                    <button
-                      onClick={() =>
-                        handleEdit(
-                          incident._id,
-                          incident.brand,
-                          incident.quantity,
-                          incident.price
-                        )
-                      }
-                    >
-                      {" "}
-                      Editar
-                    </button>
-                  </td>
-                  <td>
-                    <button onClick={() => handleDelete(incident._id)}>
-                      Deletar
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h1>Total de Compras</h1>
-        <div>
-          <label>Escolha o mês e o ano e veja quanto gastou nesse mês</label>
-          <div>
-            <label>Mês</label>
-            <input
-              type="number"
-              min="1"
-              max="12"
-              value={month}
-              onChange={(e) => setMonth(e.target.value)}
-            ></input>
-            <br></br>
-            <label>Ano</label>
-            <input
-              type="number"
-              min="2021"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-            ></input>
-          </div>
-          <button className="botao2" onClick={() => calcularTotal(month, year)}>
-            Calcular Total
-          </button>
-          <div>
-            <label>Preço Total (R$): {totalPrice} </label>
-          </div>
+        </div>
+
+        <div className="area2">
+          <h3>Visualizar Compras</h3>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Marca</th>
+                <th>Quantidade (kg)</th>
+                <th>Preço R$</th>
+                <th>Data</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {incidents.map((incident) => {
+                const date = new Date(incident.createdAt);
+                return (
+                  <tr key={incident._id}>
+                    <td>{incident?.brand}</td>
+                    <td>{incident?.quantity}</td>
+                    <td>{incident?.price}</td>
+                    <td>{`${date.getDate()}/${
+                      date.getMonth() + 1
+                    }/${date.getFullYear()}`}</td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          handleEdit(
+                            incident._id,
+                            incident.brand,
+                            incident.quantity,
+                            incident.price
+                          )
+                        }
+                      >
+                        {" "}
+                        Editar
+                      </button>
+                    </td>
+                    <td>
+                      <button onClick={() => handleDelete(incident._id)}>
+                        Deletar
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
 
       {visibility ? (
         <div className="modal">
           <div className="container">
-            <h1>Editar Compras</h1>
+            <h3>Editar Compras</h3>
             <div>
               <label> Marca da Ração:</label>
               <input
