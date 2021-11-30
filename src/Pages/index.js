@@ -18,6 +18,7 @@ export default function Adicionar() {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
+  const [totalQuantity, setTotalQuantity] = useState("");
 
   async function AdicionarCompras(e) {
     e.preventDefault();
@@ -55,17 +56,21 @@ export default function Adicionar() {
   }, []);
 
   const handleDelete = async (id) => {
-    let confirmacao = prompt(
-      "Deseja realmente deletar a comprar? Se sim, digite sim."
-    ).toLowerCase();
-    if (confirmacao === "sim") {
-      await api.delete(`delete/${id}`).then((res) => {
-        alert("Compra deletada.");
-        getItems();
-      });
-    } else {
-      alert("Operação cancelada, compra não deletada.");
+    if (window.confirm("Deseja realmente excluir?")) {
+      await api.delete(`delete/${id}`);
+      getItems();
     }
+    // let confirmacao = prompt(
+    //   "Deseja realmente deletar a comprar? Se sim, digite sim."
+    // ).toLowerCase();
+    // if (confirmacao === "sim") {
+    //   await api.delete(`delete/${id}`).then((res) => {
+    //     alert("Compra deletada.");
+    //     getItems();
+    //   });
+    // } else {
+    //   alert("Operação cancelada, compra não deletada.");
+    // }
   };
 
   const atualizar = async (editId) => {
@@ -97,6 +102,7 @@ export default function Adicionar() {
       await api.get(`total?month=${month}&year=${year}`, {}).then((res) => {
         console.log(res.data);
         setTotalPrice(res.data.totalPrice);
+        setTotalQuantity(res.data.totalQuantity);
       });
     } catch (err) {
       alert("Erro, tente novamente.");
@@ -117,27 +123,35 @@ export default function Adicionar() {
               <div>
                 <label> Marca da Ração:</label>
                 <input
+                  className="input"
                   placeholder="Marca X"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
+                  maxlength="20"
                 ></input>
               </div>
               <div>
                 <label>Quantidade (kg): </label>
                 <input
+                  className="input"
                   type="number"
                   placeholder="20"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
+                  min="0"
+                  max="9999"
                 ></input>
               </div>
               <div>
                 <label>Preço (R$): </label>
                 <input
+                  className="input"
                   type="number"
                   placeholder="100"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
+                  min="0"
+                  max="999999"
                 ></input>
               </div>
               <button type="submit" className="botao1">
@@ -150,11 +164,12 @@ export default function Adicionar() {
             <h3>Total de Compras</h3>
             <div>
               <label>
-                Escolha o mês e o ano e veja quanto gastou nesse mês
+                Escolha o mês e o ano e veja quanto gastou nesse mês :
               </label>
               <div>
                 <label>Mês</label>
                 <input
+                  className="input"
                   type="number"
                   min="1"
                   max="12"
@@ -164,18 +179,23 @@ export default function Adicionar() {
                 <br></br>
                 <label>Ano</label>
                 <input
+                  className="input"
                   type="number"
                   min="2021"
+                  max="2050"
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                 ></input>
               </div>
               <button
-                className="botao2"
+                className="botao1"
                 onClick={() => calcularTotal(month, year)}
               >
-                Calcular Total
+                <h4>Calcular Total</h4>
               </button>
+              <div>
+                <label>Quantidade Total (R$): {totalQuantity} </label>
+              </div>
               <div>
                 <label>Preço Total (R$): {totalPrice} </label>
               </div>
@@ -185,7 +205,7 @@ export default function Adicionar() {
 
         <div className="area2">
           <h3>Visualizar Compras</h3>
-          <table border="1">
+          <table border="2">
             <thead>
               <tr>
                 <th>Marca</th>
@@ -242,22 +262,30 @@ export default function Adicionar() {
             <div>
               <label> Marca da Ração:</label>
               <input
+                className="input2"
                 value={editBrand}
                 onChange={(e) => setEditBrand(e.target.value)}
+                maxlength="20"
               ></input>
               <br></br>
               <label>Quantidade (kg): </label>
               <input
+                className="input2"
                 type="number"
                 value={editQuantity}
                 onChange={(e) => setEditQuantity(e.target.value)}
+                min="0"
+                max="9999"
               ></input>
               <br></br>
               <label>Preço (R$): </label>
               <input
+                className="input2"
                 type="number"
                 value={editPrice}
                 onChange={(e) => setEditPrice(e.target.value)}
+                min="0"
+                max="999999"
               ></input>
               <br></br>
               <button className="botao-modal" onClick={() => atualizar(editId)}>
