@@ -60,17 +60,6 @@ export default function Adicionar() {
       await api.delete(`delete/${id}`);
       getItems();
     }
-    // let confirmacao = prompt(
-    //   "Deseja realmente deletar a comprar? Se sim, digite sim."
-    // ).toLowerCase();
-    // if (confirmacao === "sim") {
-    //   await api.delete(`delete/${id}`).then((res) => {
-    //     alert("Compra deletada.");
-    //     getItems();
-    //   });
-    // } else {
-    //   alert("Operação cancelada, compra não deletada.");
-    // }
   };
 
   const atualizar = async (editId) => {
@@ -124,7 +113,7 @@ export default function Adicionar() {
                 <label> Marca da Ração:</label>
                 <input
                   className="input"
-                  placeholder="Marca X"
+                  placeholder="Ex: Marca X"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                   maxlength="20"
@@ -135,7 +124,7 @@ export default function Adicionar() {
                 <input
                   className="input"
                   type="number"
-                  placeholder="20"
+                  placeholder="Ex: 20"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   min="0"
@@ -147,7 +136,7 @@ export default function Adicionar() {
                 <input
                   className="input"
                   type="number"
-                  placeholder="100"
+                  placeholder="Ex: 100"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   min="0"
