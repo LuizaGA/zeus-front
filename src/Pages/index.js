@@ -101,7 +101,7 @@ export default function Adicionar() {
   return (
     <>
       <header>
-        <h2>Desafio Incrível - </h2>
+        <h2>Desafio Incrível</h2>
         <h1> Zeus</h1>
       </header>
       <div className="tela">
@@ -148,7 +148,8 @@ export default function Adicionar() {
               </button>
             </form>
           </div>
-
+        </div>
+        <div className="area3">
           <div>
             <h3>Total de Compras</h3>
             <div>
@@ -159,6 +160,7 @@ export default function Adicionar() {
                 <label>Mês</label>
                 <input
                   className="input"
+                  placeholder="Ex: 11"
                   type="number"
                   min="1"
                   max="12"
@@ -169,6 +171,7 @@ export default function Adicionar() {
                 <label>Ano</label>
                 <input
                   className="input"
+                  placeholder="Ex: 2021"
                   type="number"
                   min="2021"
                   max="2050"
@@ -198,7 +201,7 @@ export default function Adicionar() {
             <thead>
               <tr>
                 <th>Marca</th>
-                <th>Quantidade (kg)</th>
+                <th>Quant. (kg)</th>
                 <th>Preço R$</th>
                 <th>Data</th>
                 <th>Editar</th>
@@ -218,6 +221,7 @@ export default function Adicionar() {
                     }/${date.getFullYear()}`}</td>
                     <td>
                       <button
+                        className="botao-tabela-editar"
                         onClick={() =>
                           handleEdit(
                             incident._id,
@@ -232,7 +236,10 @@ export default function Adicionar() {
                       </button>
                     </td>
                     <td>
-                      <button onClick={() => handleDelete(incident._id)}>
+                      <button
+                        className="botao-tabela-deletar"
+                        onClick={() => handleDelete(incident._id)}
+                      >
                         Deletar
                       </button>
                     </td>

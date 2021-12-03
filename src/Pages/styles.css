@@ -34,24 +34,42 @@ h1 {
   display: flex;
   flex-direction: row;
   background-color: rgb(43, 43, 111);
-  height: 100%;
+  height: 100vh;
 }
 
 .area1 {
+  background-color: white;
   width: 50%;
   display: inline-block;
   margin: 20px;
   border: 3px solid white;
   border-radius: 10px;
   padding: 30px;
+  height: 50vh;
+  overflow: auto;
 }
 .area2 {
+  background-color: white;
   width: 50%;
   display: inline-block;
   margin: 20px;
   border: 3px solid white;
   border-radius: 10px;
   padding: 30px;
+  height: 50vh;
+  overflow: auto;
+}
+
+.area3 {
+  background-color: white;
+  width: 50%;
+  display: inline-block;
+  margin: 20px;
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 30px;
+  height: 50vh;
+  overflow: auto;
 }
 
 form {
@@ -59,14 +77,14 @@ form {
 }
 
 h3 {
-  color: white;
+  color: rgb(43, 43, 111);
   display: block;
   margin: 20px 0;
   font-size: 30px;
 }
 
 label {
-  color: white;
+  color: rgb(43, 43, 111);
   font-size: 20px;
 }
 
@@ -88,9 +106,13 @@ label {
   background-color: rgb(216, 213, 242);
   width: 200px;
   height: 50px;
-  border: 1px solid white;
+  border: 1px solid rgb(216, 213, 242);
   border-radius: 5px;
   cursor: pointer;
+}
+
+.botao1:hover {
+  background-color: white;
 }
 
 h4 {
@@ -99,31 +121,53 @@ h4 {
   color: rgb(43, 43, 111);
 }
 table {
-  border: white;
+  border: rgb(43, 43, 111);
 }
 
 table th {
-  color: white;
+  color: rgb(43, 43, 111);
   font-size: 18px;
   padding: 5px;
 }
 
 table td {
-  color: white;
+  color: rgb(43, 43, 111);
   font-size: 18px;
   padding: 5px;
 }
 
-table button {
+.botao-tabela-editar {
   display: inline-block;
   margin: 3px;
-  background-color: rgb(229, 226, 252);
-  width: 100px;
+  background-color: rgb(216, 213, 242);
+  width: 70px;
   height: 30px;
   color: rgb(43, 43, 111);
   font-size: 18px;
-  border: 1px solid rgb(229, 226, 252);
+  border: 1px solid rgb(216, 213, 242);
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.botao-tabela-editar:hover {
+  background-color: white;
+}
+
+.botao-tabela-deletar {
+  display: inline-block;
+  margin: 3px;
+  background-color: rgb(218, 81, 81);
+  width: 80px;
+  height: 30px;
+  color: white;
+  font-size: 18px;
+  border: 1px solid rgb(218, 81, 81);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botao-tabela-deletar:hover {
+  background-color: red;
 }
 
 .modal {
@@ -139,7 +183,7 @@ table button {
 }
 
 .container {
-  background-color: rgb(43, 43, 111);
+  background-color: white;
   width: 40%;
   height: 50%;
   border-radius: 10px;
@@ -161,12 +205,16 @@ table button {
 .botao-modal {
   display: inline;
   margin: 5px;
-  background-color: white;
+  background-color: rgb(216, 213, 242);
   color: rgb(43, 43, 111);
   width: 100px;
   height: 40px;
-  border: 1px solid white;
+  border: 1px solid rgb(216, 213, 242);
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
+}
+
+.botao-modal:hover {
+  background-color: white;
 }
